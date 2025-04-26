@@ -37,6 +37,10 @@
       transform: rotate(360deg);
     }
   }
+
+  .logo-image {
+    content: url('/ClickLogo.jpg');
+  }
 }
 
 @layer base {

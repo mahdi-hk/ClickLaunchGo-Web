@@ -6,6 +6,7 @@ import { Packages } from './pages/Packages';
 import { About } from './pages/About';
 import { AnimatePresence } from 'framer-motion';
 import './App.css';
+import clickLogo from '/ClickLogo.jpg';
 
 function AppContent() {
   const location = useLocation();
@@ -22,9 +23,11 @@ function AppContent() {
       <div className="fixed top-4 left-4 z-50">
         <Link to="/">
           <img 
-            src="/ClickLogo.jpg" 
+            src={clickLogo}
             alt="ClickLaunchGo Logo" 
             className="w-20 h-20 hover:scale-110 transition-transform duration-200"
+            loading="eager"
+            decoding="sync"
           />
         </Link>
       </div>
