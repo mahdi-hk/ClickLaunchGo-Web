@@ -1,8 +1,9 @@
 import { SplineSceneBasic, HeroScrollDemo, MagnetizeButtonDemo } from '@/components/demo';
 import { Home, User, Briefcase, FileText } from 'lucide-react';
 import { NavBar } from "@/components/ui/tubelight-navbar";
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom';
 import { Packages } from './pages/Packages';
+import { About } from './pages/About';
 import { AnimatePresence } from 'framer-motion';
 import './App.css';
 
@@ -10,7 +11,7 @@ function AppContent() {
   const location = useLocation();
   const navItems = [
     { name: 'Home', url: '/', icon: Home },
-    { name: 'About', url: '#', icon: User },
+    { name: 'About', url: '/about', icon: User },
     { name: 'Projects', url: '/packages', icon: Briefcase },
     { name: 'Resume', url: '#', icon: FileText }
   ];
@@ -19,13 +20,13 @@ function AppContent() {
     <>
       <NavBar items={navItems} />
       <div className="fixed top-4 left-4 z-50">
-        <a href="https://clicklaunchgo.com" target="_blank" rel="noopener noreferrer">
+        <Link to="/">
           <img 
-            src="/favicon.svg" 
+            src="/ClickLogo.jpg" 
             alt="ClickLaunchGo Logo" 
             className="w-20 h-20 hover:scale-110 transition-transform duration-200"
           />
-        </a>
+        </Link>
       </div>
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
@@ -38,6 +39,7 @@ function AppContent() {
               <MagnetizeButtonDemo />
             </div>
           } />
+          <Route path="/about" element={<About />} />
           <Route path="/packages" element={<Packages />} />
         </Routes>
       </AnimatePresence>
