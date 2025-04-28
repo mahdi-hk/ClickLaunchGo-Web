@@ -4,9 +4,8 @@ import { NavBar } from "@/components/ui/tubelight-navbar";
 import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom';
 import { Packages } from './pages/Packages';
 import { About } from './pages/About';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import './App.css';
-import clickLogo from '/ClickLogo.jpg';
 
 function AppContent() {
   const location = useLocation();
@@ -20,17 +19,33 @@ function AppContent() {
   return (
     <>
       <NavBar items={navItems} />
-      <div className="fixed top-4 left-4 z-50">
+      <motion.div 
+        className="fixed top-6 left-6 z-50"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ type: "spring", stiffness: 260, damping: 20 }}
+      >
         <Link to="/">
-          <img 
-            src={clickLogo}
-            alt="ClickLaunchGo Logo" 
-            className="w-20 h-20 hover:scale-110 transition-transform duration-200"
-            loading="eager"
-            decoding="sync"
-          />
+          <motion.div
+            whileHover={{ 
+              scale: 1.15,
+              rotate: 5,
+              filter: "brightness(1.2) contrast(1.1)"
+            }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            className="w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 bg-background/80 backdrop-blur-sm border border-primary/10"
+          >
+            <img 
+              src="https://i.imgur.com/BfqL191.jpeg"
+              alt="ClickLaunchGo Logo" 
+              className="w-full h-full object-cover rounded-2xl transform hover:scale-105 transition-transform duration-300"
+              loading="eager"
+              decoding="sync"
+            />
+          </motion.div>
         </Link>
-      </div>
+      </motion.div>
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={
